@@ -1,0 +1,63 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "seo_site_check"
+require "cobweb"
+require "csv"
+
+
+homepage = ARGV.first
+output_file = ARGV.length > 1 ? ARGV[1] : "seo-site-check-report.csv"
+
+crawler = CobwebCrawler.new(
+  debug: false,
+  valid_mime_types: ['text/*']
+)
+
+url_headings = {}
+hdrs = %w(h1 h2 h3 h4 h5 h6)
+htag_counts = {}
+hdrs.each {|h| htag_counts[h] = 0}
+
+def cleanup_hdr(hdr)
+  val = hdr.strip.gsub("\n", " ")
+  val = "EMPTY" if val.empty?
+  val
+end
+
+crawler.crawl(homepage) do |page|
+  if page[:mime_type]=="text/html"
+    puts page[:url]
+
+    doc = Nokogiri::HTML(page[:body])
+    headers = {
+      title: cleanup_hdr(doc.xpath("//title").first.content)
+    }
+    hdrs.each do |htag|
+      tags = doc.xpath("//#{htag}").map(&:content).map{|c|cleanup_hdr c}
+      tags = ["EMPTY"] if tags.empty?
+      headers[htag] = tags
+      htag_counts[htag] = tags.length if tags.length > htag_counts[htag]
+    end
+    url_headings[page[:url]] = headers
+  end
+end
+CSV.open(output_file, "wb") do |csv|
+  hdr_row = ["url", "title"]
+  hdrs.each do |hdr|
+    no_occs = htag_counts[hdr]
+    hdr_row.concat( [].fill(hdr,0..no_occs-1) )
+  end
+  csv << hdr_row
+  url_headings.each do |url, headers|
+    row = [ url, headers[:title] ]
+    hdrs.each do |hdr|
+      no_hdr_occs = htag_counts[hdr]
+      prepped_row = [].fill("",0..no_hdr_occs-1)
+      headers[hdr].each_with_index {|hv, i| prepped_row[i] = hv }
+      row.concat(prepped_row)
+    end
+    csv << row
+  end
+end
+puts "Finished. See #{output_file}"
