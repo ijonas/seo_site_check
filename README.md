@@ -33,3 +33,7 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/ijonas
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+
+## Special Thanks
+
+SEO Site Check couldn't have been built so quickly if it wasn't for the great Cobweb webcrawler provided by Stewart McKee.
