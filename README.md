@@ -1,46 +1,35 @@
-<<<<<<< HEAD
-# SeoSiteCheck
+# seo_site_check
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/seo_site_check`. To experiment with that code, run `bin/console` for an interactive prompt.
+A command-line utilty that provides a report to help webmasters improve website SEO.
 
-TODO: Delete this and the text above, and describe your gem
+The report produced in CSV-format is a breakdown of all the webpages encountered on a site together with their title and H1->H6 tags.
+Very simple, but I find I'm always tuning this information on my sites. Hope it helps you too.
+
+![Image of SEO Site Report](https://raw.githubusercontent.com/ijonas/seo_site_check/master/assets/seo_site_check_screenshot.jpg)
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'seo_site_check'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
+SEO Site Check is meant to be run as a command line utility. To install on OSX and Unix-based systems:
 
     $ gem install seo_site_check
 
 ## Usage
 
-TODO: Write usage instructions here
+Running SEO Site check only requires the URL of the homepage the site you're checking:
 
-## Development
+    $ seo_site_check http://www.ijonas.com
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+Which produce an seo-site-check-report.csv in your current folder.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+You can override the file path and name by specifying an additional parameter:
+
+    $ seo_site_check http://www.ijonas.com /tmp/sitereport.csv
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/seo_site_check. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/ijonas/seo_site_check. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
 
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
-=======
-# seo_site_check
-Ruby gem that provides a report to help webmasters improve website SEO.
->>>>>>> bb786b719d53ce1995ba6428fa8a619e14d7ac78
