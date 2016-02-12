@@ -36,4 +36,4 @@ The gem is available as open source under the terms of the [MIT License](http://
 
 ## Special Thanks
 
-SEO Site Check couldn't have been built so quickly if it wasn't for the great Cobweb webcrawler provided by Stewart McKee.
+SEO Site Check couldn't have been built so quickly if it wasn't for the great [Cobweb webcrawler](https://github.com/stewartmckee/cobweb) provided by Stewart McKee.
