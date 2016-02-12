@@ -15,11 +15,11 @@ SEO Site Check is meant to be run as a command line utility. To install on OSX a
 
 ## Usage
 
-Running SEO Site check only requires the URL of the homepage the site you're checking:
+Running SEO Site check only requires the URL of the homepage of the site you're checking:
 
     $ seo_site_check http://www.ijonas.com
 
-Which produce an seo-site-check-report.csv in your current folder.
+which will produce an seo-site-check-report.csv file in your current folder.
 
 You can override the file path and name by specifying an additional parameter:
 
